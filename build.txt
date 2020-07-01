@@ -1,0 +1,5 @@
+author = Graumen
+displayName = Grab Bag Opener
+homepage = https://forums.terraria.org/index.php?threads/grab-bag-opener.95435/
+includeSource = true
+version = 1.0

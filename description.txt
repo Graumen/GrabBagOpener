@@ -1,0 +1,1 @@
+Grab Bag Opener automatically opens all Vanilla Grab Bags(Crates, Treasure Bags etc.) and modded Treasure Bags in your Inventory with the Press of a Key(Settings >> Controls >> Keybindings >> Mod Controls >> GrabBagOpener: Activate). Press the Key again to stop the Opening Process.
