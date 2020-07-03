@@ -4,35 +4,35 @@ namespace GrabBagOpener
 {
     class ModPlayer0 : ModPlayer
     {
-        bool gbo;
-        public override void ProcessTriggers(Terraria.GameInput.TriggersSet ts)
+        bool active;
+        public override void ProcessTriggers(Terraria.GameInput.TriggersSet _)
         {
             var lp = Main.LocalPlayer;
 
-            if (gbo)
+            if (active)
             {
-                for (int id = 0; 58 > id; id++)
+                for (int slot = 0; 58 > slot; slot++)
                 {
-                    var _ = lp.inventory[id];
+                    var item = lp.inventory[slot];
 
-                    if (_.type < 2337 && _.type > 2333 || _.type < 3209 && _.type > 3202) lp.openCrate(_.type);
-                    if (_.type < 3333 && _.type > 3317 || _.type < 3863 && _.type > 3859 || ItemLoader.IsModBossBag(_)) lp.OpenBossBag(_.type);
-                    if (_.type == 1774) lp.openGoodieBag();
-                    if (_.type == 1869) lp.openPresent();
-                    if (_.type == 3085) lp.openLockBox();
-                    if (_.type == 3093) lp.openHerbBag();
-                    if (_.type < 2337 && _.type > 2333 || _.type < 3209 && _.type > 3202 || _.type < 3333 && _.type > 3317 || _.type < 3863 && _.type > 3859 || _.type == 1774 || _.type == 1869 || _.type == 3085 || _.type == 3093 || ItemLoader.IsModBossBag(_))
+                    if (1774 == item.type) lp.openGoodieBag();
+                    if (1869 == item.type) lp.openPresent();
+                    if (2333 < item.type && 2337 > item.type || 3202 < item.type && 3209 > item.type) lp.openCrate(item.type);
+                    if (3085 == item.type) lp.openLockBox();
+                    if (3093 == item.type) lp.openHerbBag();
+                    if (3317 < item.type && 3333 > item.type || 3859 < item.type && 3863 > item.type || ItemLoader.IsModBossBag(item)) lp.OpenBossBag(item.type);
+                    if (1774 == item.type || 1869 == item.type || 2333 < item.type && 2337 > item.type || 3085 == item.type || 3093 == item.type || 3202 < item.type && 3209 > item.type || 3317 < item.type && 3333 > item.type || 3859 < item.type && 3863 > item.type || ItemLoader.IsModBossBag(item))
                     {
-                        if (_.stack > 1) _.stack--;
-                        else _.SetDefaults();
+                        if (item.stack > 1) item.stack--;
+                        else item.SetDefaults();
                         break;
                     }
                 }
             }
-            if (Mod0.act.JustPressed)
+            if (Mod0.activate.JustPressed)
             {
-                gbo = !gbo;
-                Main.NewText("Grab Bag Opener " + (gbo ? "[c/00ff00:On]" : "[c/ff0000:Off]"));
+                active = !active;
+                Main.NewText("Grab Bag Opener " + (active ? "[c/00ff00:On]" : "[c/ff0000:Off]"));
             }
         }
     }
