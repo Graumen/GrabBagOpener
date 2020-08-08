@@ -15,17 +15,35 @@ namespace GrabBagOpener
                 {
                     var item = lp.inventory[slot];
 
-                    if (1774 == item.type) lp.openGoodieBag();
-                    if (1869 == item.type) lp.openPresent();
-                    if (2333 < item.type && 2337 > item.type || 3202 < item.type && 3209 > item.type) lp.openCrate(item.type);
-                    if (3085 == item.type) lp.openLockBox();
-                    if (3093 == item.type) lp.openHerbBag();
-                    if (3317 < item.type && 3333 > item.type || 3859 < item.type && 3863 > item.type || ItemLoader.IsModBossBag(item)) lp.OpenBossBag(item.type);
-                    if (1774 == item.type || 1869 == item.type || 2333 < item.type && 2337 > item.type || 3085 == item.type || 3093 == item.type || 3202 < item.type && 3209 > item.type || 3317 < item.type && 3333 > item.type || 3859 < item.type && 3863 > item.type || ItemLoader.IsModBossBag(item))
+                    if (1774 == item.type)
                     {
-                        if (item.stack > 1) item.stack--;
-                        else item.SetDefaults();
-                        break;
+                        lp.openGoodieBag();
+                        lp.ConsumeItem(item.type);
+                    }
+                    if (1869 == item.type)
+                    {
+                        lp.openPresent();
+                        lp.ConsumeItem(item.type);
+                    }
+                    if (2333 < item.type && 2337 > item.type || 3202 < item.type && 3209 > item.type)
+                    {
+                        lp.openCrate(item.type);
+                        lp.ConsumeItem(item.type);
+                    }
+                    if (3085 == item.type && lp.ConsumeItem(327))
+                    {
+                        lp.openLockBox();
+                        lp.ConsumeItem(item.type);
+                    }
+                    if (3093 == item.type)
+                    {
+                        lp.openHerbBag();
+                        lp.ConsumeItem(item.type);
+                    }
+                    if (3317 < item.type && 3333 > item.type || 3859 < item.type && 3863 > item.type || ItemLoader.IsModBossBag(item))
+                    {
+                        lp.OpenBossBag(item.type);
+                        lp.ConsumeItem(item.type);
                     }
                 }
             }
